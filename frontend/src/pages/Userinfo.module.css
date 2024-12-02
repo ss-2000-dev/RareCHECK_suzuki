@@ -1,0 +1,56 @@
+.userInfoFrame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userInfoLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  margin-top: 2%;
+  height: auto;
+  min-height: 500px;
+  width: 700px;
+  border-radius: 3%;
+  box-sizing: border-box;
+}
+
+.sinupLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  margin-top: 2%;
+  height: auto;
+  min-height: 630px;
+  width: 700px;
+  border-radius: 3%;
+  box-sizing: border-box;
+}
+
+.userInfoFormFrame {
+  width: 70%;
+}
+
+.title {
+  margin-top: 32px;
+}
+
+.logo {
+  margin-top: 12px;
+  height: 120px;
+  width: 120px;
+}
+
+.buttonFrame {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  max-width: 200px;
+}
+
+.button {
+  border-radius: 8px;
+}
