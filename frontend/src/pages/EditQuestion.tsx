@@ -14,10 +14,9 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 // import CollectionsIcon from "@mui/icons-material/Collections";
-
 import { Page } from "../components/layout/Page";
+import { PostEdit } from "../types/operationQuestion";
 import styles from "./EditQuestion.module.css";
-import { PostEdit } from "../types/api/PostEdit";
 
 export const EditQuestion: React.FC = () => {
   const navigate = useNavigate();

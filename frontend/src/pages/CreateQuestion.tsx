@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { Page } from "../components/layout/Page";
 import styles from "./CreateQuestion.module.css";
-import { PostCreate } from "../types/api/PostCreate";
+import { PostCreate } from "../types/operationQuestion";
 
 export const CreateQuestion = () => {
   const navigate = useNavigate();

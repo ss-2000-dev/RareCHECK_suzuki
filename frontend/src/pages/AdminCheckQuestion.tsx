@@ -16,8 +16,10 @@ import {
 } from "@mui/material";
 /* import { CollectionsFilled } from '@mui/icons-material'; */
 import { Page } from "../components/layout/Page";
-import { PostFeedback } from "../types/api/PostFeedback";
-import { GetQuestionDetailAdmin } from "../types/api/GetQuestionDetailAdmin";
+import {
+  GetQuestionDetailAdmin,
+  PostFeedback,
+} from "../types/operationQuestion";
 import styles from "./AdminCheckQuestion.module.css";
 
 export const AdminCheckQuestion: React.FC = () => {

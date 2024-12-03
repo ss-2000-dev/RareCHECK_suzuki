@@ -17,9 +17,11 @@ import {
 } from "@mui/material";
 
 import { Page } from "../components/layout/Page";
+import {
+  GetQuestionDetailAdmin,
+  PostFeedback,
+} from "../types/operationQuestion";
 import styles from "./AdminEditQuestion.module.css";
-import { PostFeedback } from "../types/api/PostFeedback";
-import { GetQuestionDetailAdmin } from "../types/api/GetQuestionDetailAdmin";
 
 export const AdminEditQuestion: React.FC = () => {
   const navigate = useNavigate();
