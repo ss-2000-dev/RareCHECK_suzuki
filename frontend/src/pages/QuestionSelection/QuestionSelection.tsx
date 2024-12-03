@@ -25,7 +25,7 @@ import { difficultyLevels } from "./selections/difficultyLevels";
 import {
   convertStepRangeToList,
   convertDifficultyToNumber,
-} from "../../services/convertFunctions";
+} from "../../utils/convert";
 
 export const QuestionSelection = () => {
   const navigate = useNavigate();

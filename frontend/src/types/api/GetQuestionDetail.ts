@@ -1,5 +1,4 @@
 // 問題編集（受講生）
-
 export type GetQuestionDetail = {
   step: number;
   question: string;

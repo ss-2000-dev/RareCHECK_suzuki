@@ -1,5 +1,4 @@
 // 取得する演習問題
-
 export type GetExercise = {
   id: number;
   question: string;

@@ -15,15 +15,15 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
-
 import { Page } from "../components/layout/Page";
 import {
   GetQuestionDetailAdmin,
   PostFeedback,
 } from "../types/operationQuestion";
+import { convertNumberToDifficulty } from "../utils/convert";
 import styles from "./AdminEditQuestion.module.css";
 
-export const AdminEditQuestion: React.FC = () => {
+export const AdminEditQuestion = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const questionId = location.state?.id;
@@ -149,20 +149,6 @@ export const AdminEditQuestion: React.FC = () => {
     setQuiz(newWrongAnswer2);
   };
 
-  // 難易度を数字から文字列に変換
-  const getDifficultyLabel = (difficulty: number): string => {
-    switch (difficulty) {
-      case 1:
-        return "易しい";
-      case 2:
-        return "普通";
-      case 3:
-        return "難しい";
-      default:
-        return "未設定"; // `difficulty`が1, 2, 3以外の場合は「未設定」
-    }
-  };
-
   // 編集内容を保存
   const handleSubmit = () => {
     const feedbackQuiz: PostFeedback = {
@@ -245,7 +231,7 @@ export const AdminEditQuestion: React.FC = () => {
         </div>
         <div className="questionStatus">
           <>問題ID: {quiz.id}</>
-          <p>難易度: {getDifficultyLabel(quiz.difficulty)}</p>
+          <p>難易度: {convertNumberToDifficulty(quiz.difficulty)}</p>
           <p>問題掲載: {quiz.is_accept ? "承認" : "未承認"}</p>
         </div>
         <form>
@@ -387,7 +373,7 @@ export const AdminEditQuestion: React.FC = () => {
                     <Select
                       labelId="step-select-label"
                       id="step-select"
-                      value={getDifficultyLabel(quiz.difficulty)}
+                      value={convertNumberToDifficulty(quiz.difficulty)}
                       label="difficulty"
                       onChange={changeDifficulty}
                     >

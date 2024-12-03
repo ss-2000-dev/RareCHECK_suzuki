@@ -18,7 +18,20 @@ import { Page } from "../components/layout/Page";
 import { PostEdit } from "../types/operationQuestion";
 import styles from "./EditQuestion.module.css";
 
-export const EditQuestion: React.FC = () => {
+// TODO: カテゴリもDBから取得したい（新しいカテゴリが追加されたときに対応するため）
+const categories = [
+  "インフラ",
+  "プログラミング",
+  "ウェブシステム",
+  "セキュリティ",
+  "アーキテクティング",
+  "AI/データサイエンス",
+  "UI/UX",
+  "ビジネススキル",
+  "その他",
+];
+
+export const EditQuestion = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const questionId = location.state?.id;
@@ -59,18 +72,6 @@ export const EditQuestion: React.FC = () => {
 
   /*0~500までの配列 */
   const steps = Array.from({ length: 501 }, (_, i) => i);
-
-  const categories = [
-    "インフラ",
-    "プログラミング",
-    "ウェブシステム",
-    "セキュリティ",
-    "アーキテクティング",
-    "AI/データサイエンス",
-    "UI/UX",
-    "ビジネススキル",
-    "その他",
-  ];
 
   const [quiz, setQuiz] = useState(defaultQuiz);
 
