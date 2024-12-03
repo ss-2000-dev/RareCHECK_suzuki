@@ -11,6 +11,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  SelectChangeEvent,
 } from "@mui/material";
 // import CollectionsIcon from "@mui/icons-material/Collections";
 
@@ -39,7 +40,7 @@ export const EditQuestion: React.FC = () => {
 
   /*stateの初期値にするquizのデフォルト*/
   const defaultQuiz = {
-    step: "",
+    step: 0,
     question: "",
     // question_image:string,
     correct_option: "",
@@ -96,17 +97,17 @@ export const EditQuestion: React.FC = () => {
   }, []);
 
   // 冗長なのでuseReduseで作った方がすっきりしそう
-  const changeStep = (e: any) => {
-    const newStep = { ...quiz, step: e.target.value };
+  const changeStep = (e: SelectChangeEvent<string>) => {
+    const newStep = { ...quiz, step: Number(e.target.value) };
     setQuiz(newStep);
   };
 
-  const changeCategory = (e: any) => {
+  const changeCategory = (e: SelectChangeEvent<string>) => {
     const newCategory = { ...quiz, category_name: e.target.value };
     setQuiz(newCategory);
   };
 
-  const changeQuestion = (e: any) => {
+  const changeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuestion = { ...quiz, question: e.target.value };
     setQuiz(newQuestion);
   };
@@ -116,7 +117,7 @@ export const EditQuestion: React.FC = () => {
   //   setQuiz(newQuestionImage);
   // }
 
-  const changeExplanation = (e: any) => {
+  const changeExplanation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newExplanation = { ...quiz, explanation: e.target.value };
     setQuiz(newExplanation);
   };
@@ -126,17 +127,17 @@ export const EditQuestion: React.FC = () => {
   //   setQuiz(newcExplanationImage);
   // }
 
-  const changeCorrectAnswer = (e: any) => {
+  const changeCorrectAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newCorrectAnswer = { ...quiz, correct_option: e.target.value };
     setQuiz(newCorrectAnswer);
   };
 
-  const changeWrongAnswer1 = (e: any) => {
+  const changeWrongAnswer1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newWrongAnswer1 = { ...quiz, wrong_option_1: e.target.value };
     setQuiz(newWrongAnswer1);
   };
 
-  const changeWrongAnswer2 = (e: any) => {
+  const changeWrongAnswer2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newWrongAnswer2 = { ...quiz, wrong_option_2: e.target.value };
     setQuiz(newWrongAnswer2);
   };
@@ -182,7 +183,7 @@ export const EditQuestion: React.FC = () => {
         <form>
           {/* 2カラムにするためのコンテナ */}
           <div className={styles.twoColumnLayout}>
-            {/*　左列のレイアウト */}
+            {/* 左列のレイアウト */}
             <Stack spacing={2} className={styles.leftColumnLayout}>
               <div className={styles.formscolumn}>
                 <Stack spacing={2}>
@@ -195,7 +196,7 @@ export const EditQuestion: React.FC = () => {
                       <Select
                         labelId="step-select-label"
                         id="step-select"
-                        value={quiz.step}
+                        value={quiz.step.toString()}
                         label="Step"
                         onChange={changeStep}
                       >

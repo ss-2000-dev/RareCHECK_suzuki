@@ -12,13 +12,13 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  SelectChangeEvent,
 } from "@mui/material";
 /* import { CollectionsFilled } from '@mui/icons-material'; */
-
 import { Page } from "../components/layout/Page";
-import styles from "./AdminCheckQuestion.module.css";
 import { PostFeedback } from "../types/api/PostFeedback";
 import { GetQuestionDetailAdmin } from "../types/api/GetQuestionDetailAdmin";
+import styles from "./AdminCheckQuestion.module.css";
 
 export const AdminCheckQuestion: React.FC = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export const AdminCheckQuestion: React.FC = () => {
 
   /*stateの初期値にするquizのデフォルト*/
   const defaultQuiz: GetQuestionDetailAdmin = {
-    step: "",
+    step: 0,
     question: "",
     // question_image:string,
     correct_option: "",
@@ -36,9 +36,9 @@ export const AdminCheckQuestion: React.FC = () => {
     explanation: "",
     // explanation_image:string,
     is_accept: false,
-    difficulty: "",
+    difficulty: 2,
     comment: "",
-    id: "",
+    id: 0,
     category_name: "",
   };
 
@@ -77,12 +77,12 @@ export const AdminCheckQuestion: React.FC = () => {
     getQuiz();
   }, []);
 
-  const changeDifficulty = (e: any) => {
-    const newDifficulty = { ...quiz, difficulty: e.target.value };
+  const changeDifficulty = (e: SelectChangeEvent<string>) => {
+    const newDifficulty = { ...quiz, difficulty: Number(e.target.value) };
     setQuiz(newDifficulty);
   };
 
-  const changeComment = (e: any) => {
+  const changeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newComment = { ...quiz, comment: e.target.value };
     setQuiz(newComment);
   };
@@ -94,7 +94,7 @@ export const AdminCheckQuestion: React.FC = () => {
     setQuiz(newIsAccepted);
   };
 
-  const getDifficultyLabel = (difficulty: number | string): string => {
+  const getDifficultyLabel = (difficulty: number): string => {
     switch (difficulty) {
       case 1:
         return "易しい";
@@ -159,7 +159,7 @@ export const AdminCheckQuestion: React.FC = () => {
         <form>
           {/* 2カラムにするためのコンテナ */}
           <div className={styles.twoColumnLayout}>
-            {/*　左列のレイアウト */}
+            {/* 左列のレイアウト */}
             <Stack spacing={2} className={styles.leftColumnLayout}>
               <div className={styles.formscolumn}>
                 <Stack spacing={2}>
@@ -288,7 +288,7 @@ export const AdminCheckQuestion: React.FC = () => {
                     <Select
                       labelId="step-select-label"
                       id="step-select"
-                      value={quiz.difficulty}
+                      value={getDifficultyLabel(quiz.difficulty)}
                       label="difficulty"
                       onChange={changeDifficulty}
                     >

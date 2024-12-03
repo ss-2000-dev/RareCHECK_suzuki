@@ -1,7 +1,7 @@
 // 問題作成
 
 export type PostEdit = {
-  step: number | string;
+  step: number;
   question: string;
   // question_image:string,
   correct_option: string;

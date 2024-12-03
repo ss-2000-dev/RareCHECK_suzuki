@@ -1,10 +1,10 @@
 // 問題編集（管理者）
 
 export type GetQuestionDetailAdmin = {
-  id: number | string;
-  difficulty: number | string;
+  id: number;
+  difficulty: number;
   is_accept: boolean;
-  step: number | string;
+  step: number;
   category_name: string;
   question: string;
   // question_image: string;

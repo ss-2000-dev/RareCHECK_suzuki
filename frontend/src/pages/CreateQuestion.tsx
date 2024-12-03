@@ -10,14 +10,13 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  SelectChangeEvent,
 } from "@mui/material";
-// import CollectionsIcon from "@mui/icons-material/Collections";
-
 import { Page } from "../components/layout/Page";
 import styles from "./CreateQuestion.module.css";
 import { PostCreate } from "../types/api/PostCreate";
 
-export const CreateQuestion: React.FC = () => {
+export const CreateQuestion = () => {
   const navigate = useNavigate();
   const storedUserId = localStorage.getItem("rarecheck-userId");
 
@@ -36,7 +35,7 @@ export const CreateQuestion: React.FC = () => {
   }, [navigate]);
 
   const defaultQuiz = {
-    step: "",
+    step: 0,
     question: "",
     // question_image:string,
     correct_option: "",
@@ -47,8 +46,6 @@ export const CreateQuestion: React.FC = () => {
     user_id: storedUserId,
     category_name: "",
   };
-  /*1~500までの配列*/
-  // const steps = Array.from({ length: 500 }, (_, i) => (i + 1).toString());
 
   /*0~500までの配列 */
   const steps = Array.from({ length: 501 }, (_, i) => i);
@@ -68,37 +65,41 @@ export const CreateQuestion: React.FC = () => {
   const [quiz, setQuiz] = useState<PostCreate>(defaultQuiz);
 
   // ステップの選択
-  const selectStep = (e: any) => {
-    const newStep = { ...quiz, step: e.target.value };
+  const selectStep = (e: SelectChangeEvent<string>) => {
+    const newStep = { ...quiz, step: Number(e.target.value) };
     setQuiz(newStep);
   };
 
   // カテゴリの選択
-  const selectCategory = (e: any) => {
+  const selectCategory = (e: SelectChangeEvent<string>) => {
     const newCategory = { ...quiz, category_name: e.target.value };
     setQuiz(newCategory);
   };
 
   // 問題の入力
-  const handleQuestion = (e: any) => {
+  const handleQuestion = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuestion = { ...quiz, question: e.target.value };
     setQuiz(newQuestion);
   };
+
   // 解説の入力
-  const handleExplanation = (e: any) => {
+  const handleExplanation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newExplanation = { ...quiz, explanation: e.target.value };
     setQuiz(newExplanation);
   };
+
   // 選択肢の入力
-  const handleCorrectOption = (e: any) => {
+  const handleCorrectOption = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newCorrectOption = { ...quiz, correct_option: e.target.value };
     setQuiz(newCorrectOption);
   };
-  const handleWrongOption1 = (e: any) => {
+
+  const handleWrongOption1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newWrongOption1 = { ...quiz, wrong_option_1: e.target.value };
     setQuiz(newWrongOption1);
   };
-  const handleWrongOption2 = (e: any) => {
+
+  const handleWrongOption2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newWrongOption2 = { ...quiz, wrong_option_2: e.target.value };
     setQuiz(newWrongOption2);
   };
@@ -141,9 +142,9 @@ export const CreateQuestion: React.FC = () => {
                   <Select
                     labelId="step-select-label"
                     id="step-select"
-                    value={quiz.step}
+                    value={quiz.step.toString()}
                     label="Step"
-                    defaultValue=""
+                    defaultValue="0"
                     onChange={selectStep}
                   >
                     {steps.map((step) => {

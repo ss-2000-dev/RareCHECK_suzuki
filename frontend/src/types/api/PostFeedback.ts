@@ -1,7 +1,7 @@
 // 編集してPostする問題（管理者）
 export type PostFeedback = {
   id: number | string;
-  difficulty: number | string;
+  difficulty: number;
   is_accept: boolean;
   step: number | string;
   category_name: string;
